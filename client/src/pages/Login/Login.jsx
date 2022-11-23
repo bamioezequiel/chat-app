@@ -58,7 +58,7 @@ export default function Login() {
     if (handleValidation()) {
       const { username, email, password } = input;
       const { data } = await axios.post(
-        "/login",
+        "/auth/login",
         {
           username,
           password,
@@ -72,7 +72,7 @@ export default function Login() {
           if (username) toast.error(username, toastOptions);
           else if (password) toast.error(password, toastOptions);
         } else {
-          dispatch(getUser());
+          await dispatch(getUser());
           navigate("/");
         }
       }

@@ -70,7 +70,7 @@ export default function Signup() {
     if (handleValidation()) {
       const { username, email, password } = input;
       const { data } = await axios.post(
-        "/register",
+        "/auth/register",
         {
           username,
           email,
@@ -86,8 +86,8 @@ export default function Signup() {
           else if (email) toast.error(email, toastOptions);
           else if (password) toast.error(password, toastOptions);
         } else {
-          dispatch(getUser());
-          navigate("/");
+          await dispatch(getUser());
+          navigate("/setAvatar");
         }
       }
     }
