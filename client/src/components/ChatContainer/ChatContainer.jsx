@@ -13,17 +13,18 @@ export default function ChatContainer({ currentChat, socket }) {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const user = useSelector((state) => state.user);
 
-  useEffect( () => {
+  useEffect(() => {
     const getMessages = async () => {
       const res = await axios.post("/message/getMessages", {
         from: user._id,
         to: currentChat._id,
       });
-
+      
+      console.log(res.data)
       setMessages(res.data);
     };
     getMessages();
-  }, []);
+  }, [currentChat]);
 
   const handleSendMsg = async (msg) => {
     socket.current.emit("send-msg", {
@@ -57,7 +58,6 @@ export default function ChatContainer({ currentChat, socket }) {
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
   return (
     <div className="chatContainer-container">
       <div className="chat-header">
@@ -75,22 +75,22 @@ export default function ChatContainer({ currentChat, socket }) {
         <Logout />
       </div>
       <div className="chat-messages">
-        {console.log(messages)}
-        { messages && messages?.map((message) => {
-          return (
-            <div ref={scrollRef} key={uuidv4()}>
-              <div
-                className={`message ${
-                  message.fromSelf ? "sended" : "recieved"
-                }`}
-              >
-                <div className="content ">
-                  <p>{message.message}</p>
+        {messages &&
+          messages?.map((message) => {
+            return (
+              <div ref={scrollRef} key={uuidv4()}>
+                <div
+                  className={`message ${
+                    message.fromSelf ? "sended" : "recieved"
+                  }`}
+                >
+                  <div className="content ">
+                    <p>{message.message}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
       <ChatInput handleSendMsg={handleSendMsg} />
     </div>

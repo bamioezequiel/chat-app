@@ -18,7 +18,7 @@ export default function Contacts({ contacts, changeChat }) {
     setCurrentSelected(index);
     changeChat(contact);
   };
-  console.log(contacts)
+
   return (
     <div className="contacts-container">
       <div className="brand">
