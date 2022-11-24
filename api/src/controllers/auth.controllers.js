@@ -56,7 +56,7 @@ export const register = async (req, res, next) => {
   try {
     const user = await User.register(username, email, password);
     const token = createToken(user._id);
-    res.cookie("jwt", token, { 
+    res.cookie("jwt", token, {
       withCredentials: true,
       httpOnyl: false,
       maxAge: maxTime * 1000,
@@ -69,3 +69,4 @@ export const register = async (req, res, next) => {
     res.send({ errors, create: false });
   }
 };
+

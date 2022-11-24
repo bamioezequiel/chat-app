@@ -49,7 +49,7 @@ export const getAllUsers = async (req, res, next) => {
   try {
     const id = req.params.id;
     const users = await User.find({ _id: { $ne: id } }).select(
-      "username email _id avatarImage"
+      "username email _id avatarImg isAvatarImageSet"
     );
     res.send(users);
   } catch (error) {

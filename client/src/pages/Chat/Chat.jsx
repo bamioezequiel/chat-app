@@ -45,7 +45,7 @@ export default function Chat() {
     const loadUsers = async () => {
       if (currentUser) {
         if (user.isAvatarImageSet) {
-          const { data } = await axios.get(`/user/allUsers/${currentUser._id}`);
+          const { data } = await axios.get(`/user/allUsers/${user._id}`);
           setContacts(data);
         } else {
           navigate("/setAvatar");
@@ -62,7 +62,7 @@ export default function Chat() {
   return (
     <div className="chat-container">
       <div className="container">
-        <Contacts contacts={contacts} />
+        <Contacts contacts={contacts} changeChat={handleChatChange} />
         {currentChat === undefined ? (
           <Welcome />
         ) : (

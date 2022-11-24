@@ -1,11 +1,15 @@
 import mongoose from "mongoose";
-import { Server } from "socket.io"; 
+import { Server } from "socket.io";
 import app from "./src/app.js";
 
-mongoose
-  .connect(process.env.MONGO_URL, {})
-  .then(() => console.log("🟢 DB connection succesfull"))
-  .catch((error) => console.log(error));
+try {
+  mongoose
+    .connect(process.env.MONGO_URL, {})
+    .then(() => console.log("🟢 DB connection succesfull"))
+    .catch((error) => console.log(error));
+} catch (error) {
+  console.log(error);
+}
 
 const server = app.listen(process.env.PORT, () => {
   console.log(`🟢 Server listening at ${process.env.PORT}`);
