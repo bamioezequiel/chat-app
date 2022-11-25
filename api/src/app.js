@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000", "https://chat-app-ezequiel-bamio.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true,
 }));
