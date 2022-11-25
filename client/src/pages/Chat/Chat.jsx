@@ -36,7 +36,8 @@ export default function Chat() {
 
   useEffect(() => {
     if (currentUser) {
-      socket.current = io("http://localhost:3001");
+/*       socket.current = io("http://localhost:3001"); */
+      socket.current = io("https://chat-app-ezequiel-bamio.vercel.app");
       socket.current.emit("add-user", currentUser._id);
     }
   }, [currentUser]);

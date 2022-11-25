@@ -22,7 +22,7 @@ export const getUser = () => {
     try {
       await cleanUser();
       const { data } = await axios.post(
-        "http://localhost:3001/user",
+        "/user",
         {},
         { withCredentials: true }
       );
