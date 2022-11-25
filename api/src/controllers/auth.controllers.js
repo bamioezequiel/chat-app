@@ -38,7 +38,7 @@ export const login = async (req, res, next) => {
     const user = await User.login(username, password);
     const token = createToken(user._id);
     res.cookie("jwt", token, {
-      httpOnly: false,
+      httpOnly: true,
       maxAge: maxTime * 1000,
     });
 
@@ -58,7 +58,7 @@ export const register = async (req, res, next) => {
     const token = createToken(user._id);
     res.cookie("jwt", token, {
       withCredentials: true,
-      httpOnyl: false,
+      httpOnyl: true,
       maxAge: maxTime * 1000,
     });
 
