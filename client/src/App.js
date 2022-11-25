@@ -10,7 +10,8 @@ import React, { useEffect, useState } from "react";
 import { getUser } from "./redux/actions";
 import { useCookies } from "react-cookie";
 import SetAvatar from "./pages/SetAvatar/SetAvatar";
-axios.defaults.baseURL = "http://localhost:3001";
+/* axios.defaults.baseURL = "http://localhost:3001"; */
+axios.defaults.baseURL = "https://chat-app-ezequiel-bamio.onrender.com";
 
 function App() {
   const dispatch = useDispatch();
